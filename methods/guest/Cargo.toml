@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 risc0-zkvm = { version = "1.2.0", default-features = false, features = ['std'] }
-ream-consensus = { git = "https://github.com/unnawut/ream", package = "ream-consensus", branch = "rust-kzg" } # Replaced c-zkg-4844 with native rust-kzg
+ream-consensus = { git = "https://github.com/ReamLabs/ream", package = "ream-consensus" }
 
 [patch.crates-io]
-ethereum_hashing = { git = "https://github.com/unnawut/ethereum_hashing", branch = "sha256context" } # Add ethereum_hashing::Sha256Context that's failing tree_hash crate used by ream
+ethereum_hashing = { git = "https://github.com/ReamLabs/ethereum_hashing" } # Add ethereum_hashing::Sha256Context that's failing tree_hash crate used by ream
