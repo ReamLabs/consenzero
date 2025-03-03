@@ -2,8 +2,6 @@ use risc0_zkvm::guest::env;
 use ream_consensus::deneb::beacon_state::BeaconState;
 use ream_consensus::deneb::beacon_block::BeaconBlock;
 
-mod beacon_chain;
-
 fn main() {
     let count_start = env::cycle_count();
 
@@ -16,7 +14,7 @@ fn main() {
     let count_after_read_block = env::cycle_count();
 
     // Transition the state
-    let post_state = pre_state.process_block_header(block).unwrap();
+    let post_state = pre_state.process_block_header(&block).unwrap();
     let count_after_process_block_header = env::cycle_count();
 
     // Benchmark cycle counts
