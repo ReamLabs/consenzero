@@ -11,5 +11,5 @@ debug = 1
 lto = true
 
 [workspace.dependencies]
-ream-consensus = { git = "https://github.com/unnawut/ream", package = "ream-consensus", branch = "remove-deserialize" }
+ream-consensus = { git = "https://github.com/ReamLabs/ream", package = "ream-consensus" }
 snap = "1.1"
