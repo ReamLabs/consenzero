@@ -1,27 +1,24 @@
 use risc0_zkvm::guest::env;
-use ream_consensus::deneb::beacon_state::BeaconState;
+
+use consensus;
 use ream_consensus::deneb::beacon_block::BeaconBlock;
+use ream_consensus::beacon_block_header::BeaconBlockHeader;
 
 fn main() {
-    let count_start = env::cycle_count();
+    // let count_start = env::cycle_count();
 
-    // Read the pre-state
-    let mut pre_state: BeaconState = env::read();
-    let count_after_read_prestate = env::cycle_count();
-
-    // Read the block
+    let slot: u64 = env::read();
+    let latest_block_header: BeaconBlockHeader = env::read();
+    let proposer_index: u64 = env::read();
     let block: BeaconBlock = env::read();
-    let count_after_read_block = env::cycle_count();
 
-    // Transition the state
-    let post_state = pre_state.process_block_header(&block).unwrap();
-    let count_after_process_block_header = env::cycle_count();
+    let new_block_header = consensus::partials_process_block_header(
+            slot,
+            &latest_block_header,
+            proposer_index,
+            &block,
+        )
+        .unwrap();
 
-    // Benchmark cycle counts
-    eprintln!("read_pre_state: {}", count_after_read_prestate - count_start);
-    eprintln!("read_block: {}", count_after_read_block - count_after_read_prestate);
-    eprintln!("process_block_header: {}", count_after_process_block_header - count_after_read_block);
-
-    // Write public output to the journal
-    env::commit(&post_state);
+    env::commit(&new_block_header);
 }

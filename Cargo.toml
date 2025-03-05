@@ -11,5 +11,8 @@ debug = 1
 lto = true
 
 [workspace.dependencies]
+alloy-primitives = "0.8"
+ethereum_ssz = "0.8"
 ream-consensus = { git = "https://github.com/ReamLabs/ream", package = "ream-consensus" }
 snap = "1.1"
+tree_hash = "0.9"

@@ -1,0 +1,11 @@
+[package]
+name = "consensus"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+alloy-primitives.workspace = true
+ethereum_ssz.workspace = true
+ream-consensus.workspace = true
+tree_hash.workspace = true
+anyhow = "1.0"

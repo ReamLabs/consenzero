@@ -4,18 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+alloy-primitives.workspace = true
+consensus = { path = "../consensus" }
+ethereum_ssz.workspace = true
 methods = { path = "../methods" }
 risc0-zkvm = { version = "1.2.0" }
-reqwest = { version = "0.12", features = ["json"] }
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-tokio = { version = "1.0", features = ["full"] }
-clap = { version = "4.0", features = ["derive", "env"] }
 ream-consensus.workspace = true
-alloy-primitives = { version = "0.8.15", features = ['serde'] }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-serde_yaml = "0.9"
 snap.workspace = true
-ethereum_ssz = "0.8"
-ethereum_ssz_derive = "0.8"
-bytes = "1.9"
+tokio = { version = "1.0", features = ["full"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tree_hash.workspace = true
