@@ -3,7 +3,6 @@
 use methods::{CONSENSUS_STF_ELF, CONSENSUS_STF_ID};
 use ream_consensus::deneb::beacon_state::BeaconState;
 use ream_consensus::deneb::beacon_block::BeaconBlock;
-use ream_consensus::beacon_block_header::BeaconBlockHeader;
 use risc0_zkvm::{default_prover, ExecutorEnv};
 use snap::raw::Decoder;
 use ssz::Decode;
@@ -55,7 +54,7 @@ async fn main() {
     let receipt = prove_info.receipt;
 
     // For example:
-    let output: BeaconBlockHeader = receipt.journal.decode().unwrap();
+    let output: BeaconState = receipt.journal.decode().unwrap();
 
     println!("Receipt journal: {:?}", output);
 
