@@ -11,6 +11,8 @@ methods = { path = "../methods" }
 risc0-zkvm = { version = "1.2.0" }
 ream-consensus.workspace = true
 snap.workspace = true
+ssz_rs.workspace = true
+ssz_rs_derive.workspace = true
 tokio = { version = "1.0", features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 tree_hash.workspace = true

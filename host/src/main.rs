@@ -7,6 +7,7 @@ use ream_consensus::deneb::beacon_state::BeaconState;
 use risc0_zkvm::{default_prover, ExecutorEnv};
 use snap::raw::Decoder;
 use ssz::Decode;
+use ssz_rs::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -22,6 +23,9 @@ async fn main() {
     let pre_state_ssz = decoder.decompress_vec(&ssz_snappy).unwrap();
     let pre_state = BeaconState::from_ssz_bytes(&pre_state_ssz).unwrap();
 
+    let pre_state_ssz_rs = MyBeaconState::deserialize(&pre_state_ssz);
+    println!("ssz_rs: {:?}", pre_state_ssz_rs);
+
     // Read and decompress block SSZ snappy file
     let block_ssz_snappy =
         std::fs::read(format!("host/src/data/basic_block_header/block.ssz_snappy"))
@@ -33,6 +37,9 @@ async fn main() {
     //
     // zkVM operations
     //
+
+    // Extract out the validator for block header processing
+    // let validator = pre_state.validator
 
     // Build the zkVM guest environment
     let env = ExecutorEnv::builder()

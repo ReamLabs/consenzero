@@ -13,6 +13,8 @@ lto = true
 [workspace.dependencies]
 alloy-primitives = "0.8"
 ethereum_ssz = "0.8"
-ream-consensus = { git = "https://github.com/ReamLabs/ream", package = "ream-consensus" }
+ream-consensus = { git = "git@github.com:unnawut/ream.git", branch = "ssz_rs", package = "ream-consensus" }
 snap = "1.1"
+ssz_rs = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs"}
+ssz_rs_derive = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs_derive"}
 tree_hash = "0.9"
