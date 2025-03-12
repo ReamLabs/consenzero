@@ -1,8 +1,8 @@
 use risc0_zkvm::guest::env;
 
 use consensus::beacon_state;
-use ream_consensus::deneb::beacon_block::BeaconBlock;
-use ream_consensus::beacon_block_header::BeaconBlockHeader;
+use consensus::beacon_block::BeaconBlock;
+use consensus::beacon_block_header::BeaconBlockHeader;
 
 fn main() {
     // let count_start = env::cycle_count();
