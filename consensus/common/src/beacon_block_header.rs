@@ -3,7 +3,7 @@ use ssz_rs::prelude::*;
 
 use ream_consensus::beacon_block_header::BeaconBlockHeader as ReamBeaconBlockHeader;
 
-#[derive(Debug, SimpleSerialize, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, SimpleSerialize)]
 pub struct BeaconBlockHeader {
     pub slot: u64,
     pub proposer_index: u64,

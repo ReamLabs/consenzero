@@ -5,7 +5,7 @@ use ream_consensus::deneb::beacon_block::BeaconBlock as ReamBeaconBlock;
 
 use crate::beacon_block_body::BeaconBlockBody;
 
-#[derive(Debug, SimpleSerialize, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, SimpleSerialize)]
 pub struct BeaconBlock {
     pub slot: u64,
     pub proposer_index: u64,
