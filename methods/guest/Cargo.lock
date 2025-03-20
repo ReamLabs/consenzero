@@ -74,7 +74,7 @@ dependencies = [
  "alloy-rlp",
  "auto_impl",
  "derive_more 1.0.0",
- "sha2",
+ "sha2 0.10.8",
 ]
 
 [[package]]
@@ -173,7 +173,7 @@ dependencies = [
  "blake2",
  "derivative",
  "digest 0.10.7",
- "sha2",
+ "sha2 0.10.8",
 ]
 
 [[package]]
@@ -483,6 +483,15 @@ checksum = "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a"
 
 [[package]]
 name = "block-buffer"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4152116fd6e9dadb291ae18fc1ec3575ed6d84c29642d97890f4b4a3417297e4"
+dependencies = [
+ "generic-array",
+]
+
+[[package]]
+name = "block-buffer"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3078c7629b62d3f0439517fa394996acacc5cbc91c5a20d8c658e77abd503a71"
@@ -589,11 +598,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 
 [[package]]
+name = "consensus-common"
+version = "0.1.0"
+dependencies = [
+ "alloy-primitives",
+ "anyhow",
+ "ethereum_ssz",
+ "ream-bls",
+ "ream-consensus",
+ "serde",
+ "ssz_rs",
+ "ssz_rs_derive",
+ "tree_hash",
+ "typenum",
+]
+
+[[package]]
 name = "consensus_stf"
 version = "0.1.0"
 dependencies = [
+ "alloy-primitives",
+ "consensus-common",
  "ream-consensus",
  "risc0-zkvm",
+ "serde",
+ "ssz_rs",
+ "ssz_rs_derive",
 ]
 
 [[package]]
@@ -826,7 +856,7 @@ version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9ed9a281f7bc9b7576e61468ba615a66a5c8cfdff42420a70aa82701a3b1e292"
 dependencies = [
- "block-buffer",
+ "block-buffer 0.10.4",
  "const-oid",
  "crypto-common",
  "subtle",
@@ -904,7 +934,7 @@ name = "ethereum_hashing"
 version = "0.7.0"
 source = "git+https://github.com/ReamLabs/ethereum_hashing#e2566c68f13020afaea1176da3d93f6a0b930d5f"
 dependencies = [
- "sha2",
+ "sha2 0.10.8",
 ]
 
 [[package]]
@@ -1211,7 +1241,7 @@ dependencies = [
  "ecdsa",
  "elliptic-curve",
  "once_cell",
- "sha2",
+ "sha2 0.10.8",
 ]
 
 [[package]]
@@ -1238,7 +1268,7 @@ name = "kzg"
 version = "0.1.0"
 source = "git+https://github.com/grandinetech/rust-kzg#6ea2a2ad93ecac70d627edc91334ccb5f4ecd4fb"
 dependencies = [
- "sha2",
+ "sha2 0.10.8",
  "siphasher",
 ]
 
@@ -1355,6 +1385,12 @@ name = "once_cell"
 version = "1.20.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "945462a4b81e43c4e3ba96bd7b49d834c6f61198356aa858733bc4acf3cbe62e"
+
+[[package]]
+name = "opaque-debug"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "pairing"
@@ -1548,7 +1584,7 @@ dependencies = [
 [[package]]
 name = "ream-bls"
 version = "0.1.0"
-source = "git+https://github.com/ReamLabs/ream#4b447eee4f13ce62cb824f8e7e06fa3ef5dabeac"
+source = "git+https://github.com/ReamLabs/ream.git#4b447eee4f13ce62cb824f8e7e06fa3ef5dabeac"
 dependencies = [
  "alloy-primitives",
  "anyhow",
@@ -1556,7 +1592,7 @@ dependencies = [
  "ethereum_ssz",
  "ethereum_ssz_derive",
  "serde",
- "sha2",
+ "sha2 0.10.8",
  "ssz_types",
  "thiserror",
  "tree_hash",
@@ -1566,7 +1602,7 @@ dependencies = [
 [[package]]
 name = "ream-consensus"
 version = "0.1.0"
-source = "git+https://github.com/ReamLabs/ream#4b447eee4f13ce62cb824f8e7e06fa3ef5dabeac"
+source = "git+https://github.com/ReamLabs/ream.git#4b447eee4f13ce62cb824f8e7e06fa3ef5dabeac"
 dependencies = [
  "alloy-consensus",
  "alloy-primitives",
@@ -1716,7 +1752,7 @@ dependencies = [
  "risc0-core",
  "risc0-zkvm-platform",
  "serde",
- "sha2",
+ "sha2 0.10.8",
  "tracing",
 ]
 
@@ -1742,7 +1778,7 @@ dependencies = [
  "rrs-lib",
  "semver 1.0.25",
  "serde",
- "sha2",
+ "sha2 0.10.8",
  "stability",
  "tracing",
 ]
@@ -1964,6 +2000,19 @@ dependencies = [
 
 [[package]]
 name = "sha2"
+version = "0.9.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4d58a1e1bf39749807d89cf2d98ac2dfa0ff1cb3faa38fbb64dd88ac8013d800"
+dependencies = [
+ "block-buffer 0.9.0",
+ "cfg-if",
+ "cpufeatures",
+ "digest 0.9.0",
+ "opaque-debug",
+]
+
+[[package]]
+name = "sha2"
 version = "0.10.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "793db75ad2bcafc3ffa7c68b215fee268f537982cd901d132f89c6343f3a3dc8"
@@ -2029,6 +2078,28 @@ checksum = "d91ed6c858b01f942cd56b37a94b3e0a1798290327d1236e4d9cf4eaca44d29d"
 dependencies = [
  "base64ct",
  "der",
+]
+
+[[package]]
+name = "ssz_rs"
+version = "0.9.0"
+source = "git+https://github.com/ralexstokes/ssz-rs.git#ec3073e2273b4d0873fcb6df68ff4eff79588e92"
+dependencies = [
+ "alloy-primitives",
+ "bitvec",
+ "serde",
+ "sha2 0.9.9",
+ "ssz_rs_derive",
+]
+
+[[package]]
+name = "ssz_rs_derive"
+version = "0.9.0"
+source = "git+https://github.com/ralexstokes/ssz-rs.git#ec3073e2273b4d0873fcb6df68ff4eff79588e92"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
