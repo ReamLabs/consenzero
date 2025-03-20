@@ -20,8 +20,8 @@ pub struct BeaconState {
 
     // History
     pub latest_block_header: BeaconBlockHeader,
-    pub block_roots: [FixedBytes<32>; 8192],
-    pub state_roots: [FixedBytes<32>; 8192],
+    pub block_roots: Vector<FixedBytes<32>, 8192>,
+    pub state_roots: Vector<FixedBytes<32>, 8192>,
     pub historical_roots: List<FixedBytes<32>, 16777216>,
 
     // Eth1
@@ -34,10 +34,10 @@ pub struct BeaconState {
     pub balances: List<u64, 1099511627776>,
 
     // Randomness
-    pub randao_mixes: [FixedBytes<32>; 65536],
+    pub randao_mixes: Vector<FixedBytes<32>, 65536>,
 
     // Slashings
-    pub slashings: [u64; 8192],
+    pub slashings: Vector<u64, 8192>,
 
     // Participation
     pub previous_epoch_participation: List<u8, 1099511627776>,
@@ -78,12 +78,12 @@ impl From<ReamBeaconState> for BeaconState {
             eth1_data_votes.push(v.clone().into());
         }
 
-        let mut block_roots = [FixedBytes::<32>::default(); 8192];
+        let mut block_roots = Vector::<FixedBytes<32>, 8192>::default();
         for (i, v) in state.block_roots.iter().enumerate() {
             block_roots[i] = v.clone().as_slice().try_into().unwrap();
         }
 
-        let mut state_roots = [FixedBytes::<32>::default(); 8192];
+        let mut state_roots = Vector::<FixedBytes<32>, 8192>::default();
         for (i, v) in state.state_roots.iter().enumerate() {
             state_roots[i] = v.clone().as_slice().try_into().unwrap();
         }
@@ -98,12 +98,12 @@ impl From<ReamBeaconState> for BeaconState {
             balances.push(*v);
         }
 
-        let mut randao_mixes = [FixedBytes::<32>::default(); 65536];
+        let mut randao_mixes = Vector::<FixedBytes<32>, 65536>::default();
         for (i, v) in state.randao_mixes.iter().enumerate() {
             randao_mixes[i] = v.clone().as_slice().try_into().unwrap();
         }
 
-        let mut slashings = [0; 8192];
+        let mut slashings = Vector::<u64, 8192>::default();
         for (i, v) in state.slashings.iter().enumerate() {
             slashings[i] = *v;
         }

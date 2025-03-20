@@ -7,7 +7,7 @@ pub struct ExecutionPayload {
     pub fee_recipient: Vector<u8, 20>,
     pub state_root: FixedBytes<32>,
     pub receipts_root: FixedBytes<32>,
-    pub logs_bloom: [u8; 256],
+    pub logs_bloom: Vector<u8, 256>,
     pub prev_randao: FixedBytes<32>,
     pub block_number: u64,
     pub gas_limit: u64,
@@ -43,7 +43,10 @@ impl From<ream_consensus::withdrawal::Withdrawal> for Withdrawal {
 
 impl From<ream_consensus::deneb::execution_payload::ExecutionPayload> for ExecutionPayload {
     fn from(payload: ream_consensus::deneb::execution_payload::ExecutionPayload) -> Self {
-        let logs_bloom = payload.logs_bloom.iter().as_slice().try_into().unwrap();
+        let mut logs_bloom = Vector::<u8, 256>::default();
+        for (i, v) in payload.logs_bloom.iter().enumerate() {
+            logs_bloom[i] = *v;
+        }
 
         let mut extra_data = List::<u8, 32>::default();
         for v in payload.extra_data.iter() {

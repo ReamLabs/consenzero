@@ -6,7 +6,7 @@ use crate::bls::PubKey;
 
 #[derive(Debug, SimpleSerialize)]
 pub struct SyncCommittee {
-    pub pubkeys: [PubKey; 512],
+    pub pubkeys: Vector<PubKey, 512>,
     pub aggregate_pubkey: PubKey,
 }
 
@@ -14,7 +14,7 @@ impl From<ReamSyncCommittee> for SyncCommittee {
     fn from(sync_committee: ReamSyncCommittee) -> Self {
         SyncCommittee {
             pubkeys: {
-                let mut pubkeys = [PubKey::default(); 512];
+                let mut pubkeys = Vector::<PubKey, 512>::default();
                 for (i, pubkey) in sync_committee.pubkeys.iter().enumerate() {
                     pubkeys[i] = pubkey.clone().into();
                 }

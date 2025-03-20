@@ -1,3 +1,4 @@
+use alloy_primitives::FixedBytes;
 use ssz_rs::prelude::*;
 
 use ream_consensus::validator::Validator as ReamValidator;
@@ -8,7 +9,7 @@ pub struct Validator {
     pub pubkey: PubKey,
 
     /// Commitment to pubkey for withdrawals
-    pub withdrawal_credentials: Vector<u8, 32>,
+    pub withdrawal_credentials: FixedBytes<32>,
 
     /// Balance at stake
     pub effective_balance: u64,
@@ -28,7 +29,7 @@ impl From<ReamValidator> for Validator {
         Validator {
             pubkey: validator.pubkey.into(),
 
-            withdrawal_credentials: validator.withdrawal_credentials.as_slice().try_into().unwrap(),
+            withdrawal_credentials: validator.withdrawal_credentials.into(),
 
             effective_balance: validator.effective_balance,
             slashed: validator.slashed,

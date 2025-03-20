@@ -6,10 +6,10 @@ use ssz_rs::prelude::*;
 #[derive(Debug, SimpleSerialize)]
 pub struct ExecutionPayloadHeader {
     pub parent_hash: FixedBytes<32>,
-    pub fee_recipient: [u8; 20],
+    pub fee_recipient: Vector<u8, 20>,
     pub state_root: FixedBytes<32>,
     pub receipts_root: FixedBytes<32>,
-    pub logs_bloom: [u8; 256],
+    pub logs_bloom: Vector<u8, 256>,
     pub prev_randao: FixedBytes<32>,
     pub block_number: u64,
     pub gas_limit: u64,
@@ -26,7 +26,7 @@ pub struct ExecutionPayloadHeader {
 
 impl From<ReamExecutionPayloadHeader> for ExecutionPayloadHeader {
     fn from(header: ReamExecutionPayloadHeader) -> Self {
-        let mut logs_bloom = [0; 256];
+        let mut logs_bloom = Vector::<u8, 256>::default();
         for (i, v) in header.logs_bloom.iter().enumerate() {
             logs_bloom[i] = *v;
         }
@@ -38,7 +38,7 @@ impl From<ReamExecutionPayloadHeader> for ExecutionPayloadHeader {
 
         ExecutionPayloadHeader {
             parent_hash: header.parent_hash.into(),
-            fee_recipient: header.fee_recipient.as_slice().try_into().unwrap(),
+                fee_recipient: header.fee_recipient.as_slice().try_into().unwrap(),
             state_root: header.state_root.into(),
             receipts_root: header.receipts_root.into(),
             logs_bloom,
