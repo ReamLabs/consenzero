@@ -1,0 +1,16 @@
+[package]
+name = "consensus-common"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+alloy-primitives.workspace = true
+ethereum_ssz.workspace = true
+ream-consensus.workspace = true
+ream-bls.workspace = true
+tree_hash.workspace = true
+anyhow = "1.0"
+ssz_rs.workspace = true
+ssz_rs_derive.workspace = true
+typenum.workspace = true
+serde.workspace = true

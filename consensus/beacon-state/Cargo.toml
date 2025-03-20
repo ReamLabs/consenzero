@@ -1,10 +1,11 @@
 [package]
-name = "consensus"
+name = "consensus-beacon-state"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 alloy-primitives.workspace = true
+consensus-common.workspace = true
 ethereum_ssz.workspace = true
 ream-consensus.workspace = true
 ream-bls.workspace = true
