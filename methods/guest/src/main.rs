@@ -32,12 +32,18 @@ fn main() {
     slot_proof.verify().unwrap();
     assert_eq!(slot_proof.index, 34);
     assert_eq!(slot_proof.witness, pre_state_root);
+    assert_eq!(slot_proof.leaf, slot.hash_tree_root().unwrap());
     latest_block_header_proof.verify().unwrap();
     assert_eq!(latest_block_header_proof.index, 36);
     assert_eq!(latest_block_header_proof.witness, pre_state_root);
+    assert_eq!(
+        latest_block_header_proof.leaf,
+        latest_block_header.hash_tree_root().unwrap()
+    );
     // validator_slashed_proof.verify().unwrap();
     // TODO: assert_eq for generalized index
     // assert_eq!(validator_slashed_proof.witness, pre_state_root);
+    // assert_eq!(validator_slashed_proof.leaf, validator_slashed.hash_tree_root().unwrap());
 
     let new_block_header = process_block_header(
         slot,
