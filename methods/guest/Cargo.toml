@@ -16,4 +16,3 @@ ssz_rs_derive = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "
 
 [patch.crates-io]
 ethereum_hashing = { git = "https://github.com/ReamLabs/ethereum_hashing" } # Add ethereum_hashing::Sha256Context that's failing tree_hash crate used by ream
-ethereum_hashing = { git = "https://github.com/ReamLabs/ethereum_hashing" } # Add ethereum_hashing::Sha256Context that's failing tree_hash crate used by ream
