@@ -20,10 +20,12 @@ fn main() {
     let latest_block_header: BeaconBlockHeader =
         BeaconBlockHeader::deserialize(&mut latest_block_header_ssz.as_slice()).unwrap();
     let latest_block_header_proof: Proof = env::read();
+    // TODO: pass in validator_slashed
     // let validator_slashed: bool = env::read();
     // let validator_slashed_proof: Proof = env::read();
 
     let proposer_index: u64 = env::read();
+    // TODO: pass in proposer_index_proof
 
     let block_ssz: Vec<u8> = env::read();
     let block = BeaconBlock::deserialize(&mut block_ssz.as_slice()).unwrap();
