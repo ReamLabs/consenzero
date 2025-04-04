@@ -48,7 +48,7 @@ To build all methods and execute the method within the zkVM, run the following
 command:
 
 ```bash
-cargo run -- --slot-number <SLOT_NUMBER>
+cargo run -- --local
 ```
 
 This is an empty template, and so there is no expected output (until you modify
@@ -61,7 +61,7 @@ During development, faster iteration upon code changes can be achieved by levera
 Put together, the command to run your project in development mode while getting execution statistics is:
 
 ```bash
-RUST_LOG="[executor]=info" RISC0_DEV_MODE=1 cargo run -- --slot-number <SLOT_NUMBER>
+RUST_LOG="[executor]=info" RISC0_DEV_MODE=1 cargo run -- --local
 ```
 
 ### Real Proof Generation
@@ -69,7 +69,7 @@ RUST_LOG="[executor]=info" RISC0_DEV_MODE=1 cargo run -- --slot-number <SLOT_NUM
 Once you've reached a point where you're ready to generate real proofs, you can do so by setting RISC0_DEV_MODE=0. Generating proofs locally would be achieved by running the following:
 
 ```bash
-RISC0_DEV_MODE=0 cargo run --release -- --slot-number <SLOT_NUMBER>
+RISC0_DEV_MODE=0 cargo run --release -- --local
 ```
 
 ### Executor Statistics
@@ -79,7 +79,7 @@ To gain insights into your application's performance, you can obtain executor st
 Setting this filter will print statistics about the execution before proof generation, so you can understand how computationally expensive your application is. Since the statistics concern only the executor phase, it is recommended to run your application in dev-mode to avoid the overhead of proof generation:
 
 ```bash
-RISC0_DEV_MODE=1 RUST_LOG=info cargo run --release -- --slot-number <SLOT_NUMBER>
+RISC0_DEV_MODE=1 RUST_LOG=info cargo run --release -- --local
 ```
 
 The statistics include:

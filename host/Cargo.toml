@@ -4,8 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+alloy-primitives.workspace = true
+consensus-common.workspace = true
+consensus-beacon-state.workspace = true
+ethereum_ssz.workspace = true
 methods = { path = "../methods" }
+ream-consensus.workspace = true
 risc0-zkvm = { version = "1.2.0" }
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+snap.workspace = true
+ssz_rs.workspace = true
+ssz_rs_derive.workspace = true
 tokio = { version = "1.0", features = ["full"] }
-clap = { version = "4.0", features = ["derive", "env"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tree_hash.workspace = true

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["host", "methods"]
+members = ["host", "methods", "consensus/common", "consensus/beacon-state"]
 
 # Always optimize; building and running the guest takes much longer without optimization.
 [profile.dev]
@@ -9,3 +9,18 @@ opt-level = 3
 [profile.release]
 debug = 1
 lto = true
+
+[workspace.dependencies]
+consensus-common = { path = "consensus/common" }
+consensus-beacon-state = { path = "consensus/beacon-state" }
+
+alloy-primitives = "0.8"
+ethereum_ssz = "0.8"
+ream-consensus = { git = "https://github.com/ReamLabs/ream.git", package = "ream-consensus" }
+ream-bls = { git = "https://github.com/ReamLabs/ream.git", package = "ream-bls" }
+serde = { version = '1.0', features = ['derive', "rc"] }
+snap = "1.1"
+ssz_rs = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs" }
+ssz_rs_derive = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs_derive" }
+tree_hash = "0.9"
+typenum = "1.12.0"

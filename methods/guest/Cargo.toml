@@ -6,8 +6,13 @@ edition = "2021"
 [workspace]
 
 [dependencies]
+alloy-primitives = "0.8"
+consensus-common = { path = "../../consensus/common" }
+ream-consensus = { git = "https://github.com/ReamLabs/ream.git", package = "ream-consensus" }
 risc0-zkvm = { version = "1.2.0", default-features = false, features = ['std'] }
-ream-consensus = { git = "https://github.com/ReamLabs/ream", package = "ream-consensus" }
+serde = { version = "1.0", features = ["derive"] }
+ssz_rs = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs" }
+ssz_rs_derive = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs_derive" }
 
 [patch.crates-io]
 ethereum_hashing = { git = "https://github.com/ReamLabs/ethereum_hashing" } # Add ethereum_hashing::Sha256Context that's failing tree_hash crate used by ream
