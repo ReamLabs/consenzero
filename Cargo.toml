@@ -20,7 +20,8 @@ ream-consensus = { git = "https://github.com/ReamLabs/ream.git", package = "ream
 ream-bls = { git = "https://github.com/ReamLabs/ream.git", package = "ream-bls" }
 serde = { version = '1.0', features = ['derive', "rc"] }
 snap = "1.1"
-ssz_rs = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs" }
+# ssz_rs = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs" }
+ssz_rs = { git = "https://github.com/unnawut/ssz-rs.git", branch = "partial_merkle_tree", package = "ssz_rs" } # Efficient merkle tree
 ssz_rs_derive = { git = "https://github.com/ralexstokes/ssz-rs.git", package = "ssz_rs_derive" }
 tree_hash = "0.9"
 typenum = "1.12.0"
