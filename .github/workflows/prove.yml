@@ -30,8 +30,9 @@ jobs:
       - name: Install Risc0 toolchain
         run: |
           curl -L https://risczero.com/install | bash
-          /home/runner/.risc0/bin/rzup install
-
+          /home/runner/.risc0/bin/rzup install rust 1.81.0
+          /home/runner/.risc0/bin/rzup install r0vm 2.0.1
+          /home/runner/.risc0/bin/rzup install cargo-risczero 2.0.1
       - name: Build Risc0 guest program
         run: |
           cargo build
