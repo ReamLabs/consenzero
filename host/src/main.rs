@@ -80,7 +80,7 @@ async fn main() {
         (pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize).into(),
         "slashed".into(),
     ];
-    let (validator_slashed_proof, validator_witness) =
+    let (validator_slashed_proof, validator_slashed_witness) =
         pre_state_ssz_rs.prove(validator_slashed_path).unwrap();
     let _validator_slashed_proof = Proof::new(validator_slashed_proof, validator_slashed_witness);
 
