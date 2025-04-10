@@ -20,9 +20,13 @@ fn main() {
     let latest_block_header: BeaconBlockHeader =
         BeaconBlockHeader::deserialize(&mut latest_block_header_ssz.as_slice()).unwrap();
     let latest_block_header_proof: Proof = env::read();
-    // TODO: pass in validator_slashed
-    // let validator_slashed: bool = env::read();
+
+    // Read validator_slashed
+    let validator_slashed: bool = env::read();
+
+    // NOT verifying validator_slashed. The zkVM guest is 32-bit and therefore cannot accept an index of VALIDATOR_REGISTRY_LIMIT that is 2^40 in size
     // let validator_slashed_proof: Proof = env::read();
+    // validator_slashed_proof.verify().unwrap();
 
     let proposer_index: u64 = env::read();
     // TODO: pass in proposer_index_proof
@@ -42,15 +46,12 @@ fn main() {
         latest_block_header_proof.leaf,
         latest_block_header.hash_tree_root().unwrap()
     );
-    // validator_slashed_proof.verify().unwrap();
-    // TODO: assert_eq for generalized index
-    // assert_eq!(validator_slashed_proof.witness, pre_state_root);
-    // assert_eq!(validator_slashed_proof.leaf, validator_slashed.hash_tree_root().unwrap());
 
+    // Process header
     let new_block_header = process_block_header(
         slot,
         &latest_block_header,
-        false, // validator_slashed, TODO: fix
+        validator_slashed,
         proposer_index,
         &block,
     )

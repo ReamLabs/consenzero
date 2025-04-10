@@ -65,15 +65,19 @@ async fn main() {
     let latest_block_header_proof =
         Proof::new(latest_block_header_proof, latest_block_header_witness);
         
-    // TODO: out of memory error - memory allocation of 140737488355296 bytes failed
-    // let validator_slashed_path = &[
-    //     "validators".into(),
-    //     (pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize).into(),
-    //     "slashed".into(),
-    // ];
-    // let (validator_slashed_proof, validator_slashed_witness) =
-    //     pre_state_ssz_rs.prove(validator_slashed_path).unwrap();
-    // let validator_slashed_proof = Proof::new(validator_slashed_proof, validator_slashed_witness);
+    let validator_slashed = pre_state_ssz_rs
+        .validators
+        .get(pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize)
+        .unwrap()
+        .slashed;
+
+    let validator_path = &[
+        "validators".into(),
+        (pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize).into(),
+    ];
+    let (validator_slashed_proof, validator_witness) =
+        pre_state_ssz_rs.prove(validator_path).unwrap();
+    let _validator_slashed_proof = Proof::new(validator_slashed_proof, validator_witness);
 
     //
     // zkVM operations
@@ -94,15 +98,10 @@ async fn main() {
         .unwrap()
         .write(&latest_block_header_proof)
         .unwrap()
-        // .write(
-        //     &pre_state_ssz_rs
-        //         .validators
-        //         .get(pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize)
-        //         .unwrap()
-        //         .slashed,
-        // )
-        // .unwrap()
-        // .write(&validator_slashed_proof)
+        .write(&validator_slashed)
+        .unwrap()
+        // TODO: The zkVM must support 64-bit in order to pass in VALIDATOR_REGISTRY_LIMIT index of size 2^40
+        // .write(&validator_proof)
         // .unwrap()
         .write(&pre_state_ssz_rs.get_beacon_proposer_index().unwrap())
         .unwrap()
