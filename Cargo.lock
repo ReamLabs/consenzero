@@ -836,7 +836,7 @@ dependencies = [
  "ream-consensus",
  "serde",
  "ssz_rs",
- "ssz_rs_derive",
+ "ssz_rs_derive 0.9.0 (git+https://github.com/ralexstokes/ssz-rs.git)",
  "tree_hash",
  "typenum",
 ]
@@ -852,7 +852,7 @@ dependencies = [
  "ream-consensus",
  "serde",
  "ssz_rs",
- "ssz_rs_derive",
+ "ssz_rs_derive 0.9.0 (git+https://github.com/ralexstokes/ssz-rs.git)",
  "tree_hash",
  "typenum",
 ]
@@ -1649,7 +1649,7 @@ dependencies = [
  "risc0-zkvm",
  "snap",
  "ssz_rs",
- "ssz_rs_derive",
+ "ssz_rs_derive 0.9.0 (git+https://github.com/ralexstokes/ssz-rs.git)",
  "tokio",
  "tracing-subscriber 0.3.19",
  "tree_hash",
@@ -3447,13 +3447,23 @@ dependencies = [
 [[package]]
 name = "ssz_rs"
 version = "0.9.0"
-source = "git+https://github.com/ralexstokes/ssz-rs.git#ec3073e2273b4d0873fcb6df68ff4eff79588e92"
+source = "git+https://github.com/unnawut/ssz-rs.git?branch=partial_merkle_tree#54eca98d44f288946db4a6a6e70818686a13195b"
 dependencies = [
  "alloy-primitives",
  "bitvec",
  "serde",
  "sha2 0.9.9",
- "ssz_rs_derive",
+ "ssz_rs_derive 0.9.0 (git+https://github.com/unnawut/ssz-rs.git?branch=partial_merkle_tree)",
+]
+
+[[package]]
+name = "ssz_rs_derive"
+version = "0.9.0"
+source = "git+https://github.com/unnawut/ssz-rs.git?branch=partial_merkle_tree#54eca98d44f288946db4a6a6e70818686a13195b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
