@@ -47,13 +47,15 @@ async fn main() {
     let mut block_ssz = vec![];
     block_ssz_rs.serialize(&mut block_ssz).unwrap();
 
-    // Create merkle proofs
+    // Compute tree root hash (hash of entire beacon state)
     let pre_state_root = pre_state_ssz_rs.hash_tree_root().unwrap();
 
+    // Prepare state.slot and its inclusion proof
     let slot_path = &["slot".into()];
     let (slot_proof, slot_witness) = pre_state_ssz_rs.prove(slot_path).unwrap();
     let slot_proof = Proof::new(slot_proof, slot_witness);
 
+    // Prepare state.latest_block_header and its inclusion proof
     let mut latest_block_header_ssz: Vec<u8> = vec![];
     pre_state_ssz_rs
         .latest_block_header
@@ -65,6 +67,8 @@ async fn main() {
     let latest_block_header_proof =
         Proof::new(latest_block_header_proof, latest_block_header_witness);
         
+
+    // Prepare validator_slashed and its inclusion proof
     let validator_slashed = pre_state_ssz_rs
         .validators
         .get(pre_state_ssz_rs.get_beacon_proposer_index().unwrap() as usize)
