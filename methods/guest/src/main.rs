@@ -14,8 +14,15 @@ fn main() {
 
     let pre_state_root: FixedBytes<32> = env::read();
 
+    // Read and verify slot
     let slot: u64 = env::read();
     let slot_proof: Proof = env::read();
+    slot_proof.verify().unwrap();
+    assert_eq!(slot_proof.index, 34);
+    assert_eq!(slot_proof.witness, pre_state_root);
+    assert_eq!(slot_proof.leaf, slot.hash_tree_root().unwrap());
+
+    // Read and verify latest_block_header_ssz
     let latest_block_header_ssz: Vec<u8> = env::read();
     let latest_block_header: BeaconBlockHeader =
         BeaconBlockHeader::deserialize(&mut latest_block_header_ssz.as_slice()).unwrap();
@@ -28,17 +35,14 @@ fn main() {
     // let validator_slashed_proof: Proof = env::read();
     // validator_slashed_proof.verify().unwrap();
 
+    // Read and verify proposer_index
     let proposer_index: u64 = env::read();
     // TODO: pass in proposer_index_proof
 
+    // Read and verify block
     let block_ssz: Vec<u8> = env::read();
     let block = BeaconBlock::deserialize(&mut block_ssz.as_slice()).unwrap();
 
-    // Verify proofs
-    slot_proof.verify().unwrap();
-    assert_eq!(slot_proof.index, 34);
-    assert_eq!(slot_proof.witness, pre_state_root);
-    assert_eq!(slot_proof.leaf, slot.hash_tree_root().unwrap());
     latest_block_header_proof.verify().unwrap();
     assert_eq!(latest_block_header_proof.index, 36);
     assert_eq!(latest_block_header_proof.witness, pre_state_root);

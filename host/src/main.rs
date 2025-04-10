@@ -83,9 +83,6 @@ async fn main() {
     // zkVM operations
     //
 
-    // Extract out the validator for block header processing
-    // let validator = pre_state.validator
-
     // Build the zkVM guest environment
     let env = ExecutorEnv::builder()
         .write(&pre_state_root)
