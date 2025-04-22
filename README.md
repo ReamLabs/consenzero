@@ -1,3 +1,5 @@
+# This repository is archived. Please refer to [ReamLabs/consenzero-bench](https://github.com/ReamLabs/consenzero-bench) instead.
+
 # consenzero
 
 `consenzero` is a Proof of Concept of integrating zkVM with the current Ethereum Consensus layer. It will leverage [lighthouse](https://github.com/sigp/lighthouse) and [RISC Zero](https://github.com/risc0/risc0).
